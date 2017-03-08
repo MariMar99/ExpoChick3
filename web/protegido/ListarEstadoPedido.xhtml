@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            
+              <ui:define name="content">
+                <h1><b><center><h:outputText value="Estado de Pedido"/></center></b></h1>
+                <center><a href="#">Nuevo</a></center>
+                <h:form>
+                
+                
+                    <b:dataTable value="#{estadoPedidoListarController.estadoP}" var="item">
+                    
+    
+    <b:dataTableColumn value="#{item.idEstadoPedido}" label="Numero"/>
+    <b:dataTableColumn value="#{item.nombreEstadoPedido}" label="Nombre del estado" />
+    
+  
+                </b:dataTable>
+            </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

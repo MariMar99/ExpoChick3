@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            <ui:define name="content">
+                
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="List"/></h1>
+                        <h:dataTable value="#{clientesListarController.clientes}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdClienteUsuario"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idClienteUsuario}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NombreEmpresa"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombreEmpresa}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sigla"/>
+                                </f:facet>
+                                <h:outputText value="#{item.sigla}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NumeroLegal"/>
+                                </f:facet>
+                                <h:outputText value="#{item.numeroLegal}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CodPostal"/>
+                                </f:facet>
+                                <h:outputText value="#{item.codPostal}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdCiudad"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idCiudad.nombreCiudad}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdEstadoCliente"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idEstadoCliente.nombreEstadoCliente}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Usuario"/>
+                                </f:facet>
+                                <h:outputText value="#{item.usuario.cedula}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+            
+            
+             <ui:define name="content">
+                <h1><b><center><h:outputText value="Continentes"/></center></b></h1>
+                <h:form>
+                
+                
+                    <b:dataTable value="#{clientesListarController.clientes}" var="item">
+                    
+    
+    <b:dataTableColumn value="#{item.idClienteUsuario}" label="Numero"/>
+    <b:dataTableColumn value="#{item.nombreEmpresa}" label="Empresa" />
+        <b:dataTableColumn value="#{item.sigla}" label="Sigla" />
+        <b:dataTableColumn value="#{item.numeroLegal}" label="Numero legal"/>
+    <b:dataTableColumn value="#{item.codPostal}" label="Codigo Postal" />
+        <b:dataTableColumn value="#{item.idCiudad.nombreCiudad}" label="Ciudad" />
+        <b:dataTableColumn value="#{item.idEstadoCliente.nombreEstadoCliente}" label="Estado"/>
+    <b:dataTableColumn value="#{item.usuario.cedula}" label="Documento" />
+
+        
+
+                </b:dataTable>
+            </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

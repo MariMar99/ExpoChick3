@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="List"/></h1>
+                        <h:dataTable value="#{paisListarController.paises}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdPais"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idPais}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NombrePais"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombrePais}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IdContinente"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idContinente.nombreContinente}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+                
+            </ui:define>
+
+            
+            
+             <ui:define name="content">
+                <h1><b><center><h:outputText value="Continentes"/></center></b></h1>
+                <h:form>
+                
+                
+                    <b:dataTable value="#{paisListarController.paises}" var="item">
+                    
+    
+    <b:dataTableColumn value="#{item.idPais}" label="Numero"/>
+    <b:dataTableColumn value="#{item.nombrePais}" label="Pais" />
+        <b:dataTableColumn value="#{item.idContinente.nombreContinente}" label="Continente" />
+
+
+                </b:dataTable>
+            </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

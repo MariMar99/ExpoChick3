@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+             <ui:define name="content">
+                <h1><b><center><h:outputText value="Pedido"/></center></b></h1>
+                <center><a href="#">Nuevo</a></center>
+                <h:form>
+                
+                
+                    <b:dataTable value="#{pedidoListarController.ped}" var="item">
+                    
+    
+    <b:dataTableColumn value="#{item.idPedido}" label="Numero de Detalle"/>
+    <b:dataTableColumn value="#{item.fechaPedido}" label="Fecha Pedido" />
+    <b:dataTableColumn value="#{item.fechaEntrega}" label="Fecha Entrega"/>
+    <b:dataTableColumn value="#{item.observacion}" label="Observacion"/>
+    <b:dataTableColumn value="#{item.idAntinarcoticos.idAntinarcoticos}" label="Antinarcoticos" />
+    <b:dataTableColumn  value="#{item.idCliente.idClienteUsuario}" label="Usuario"/>
+    <b:dataTableColumn value="#{item.idEstadoPedido.nombreEstadoPedido}" label="Estado Pedido"/>
+     <b:dataTableColumn value="#{item.idInconterm.descripcion}" label="Descripcion"/>
+
+    <b:dataTableColumn label="">
+         <p:commandButton styleClass="ui-confirmdialog-no" icon=" ui-icon-pencil" actionListener="#{clienteController.leer(persona)}"/>  
+      </b:dataTableColumn>
+    <b:dataTableColumn label="">
+
+        <p:commandButton styleClass="ui-confirmdialog-no" icon="ui-icon-trash" action="#{pedidoListarController.eliminarDetalle(item)}">                                     
+                        <p:confirm header="Confirmación" message="¿Seguro que desea eliminar el Detalle de Pedido?" icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>   </b:dataTableColumn>
+   
+
+
+  
+                </b:dataTable>
+            </h:form>
+            </ui:define>
+
+            
+             
+        </ui:composition>
+
+    </body>
+</html>
