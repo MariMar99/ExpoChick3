@@ -7,6 +7,7 @@ package co.expochick.business.usuarios.controller;
 
 import co.expochick.backend.persistence.entity.Usuario;
 import co.expochick.backend.persistence.entity.facade.UsuarioFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ import javax.ejb.EJB;
  */
 @Named(value = "usuarioListarManagedBean")
 @SessionScoped
-public class UsuarioListarManagedBean implements Serializable {
+public class UsuarioListarManagedBean implements Serializable, Managedbean<Usuario> {
 
     private Usuario usuario;
     
@@ -45,6 +46,11 @@ public class UsuarioListarManagedBean implements Serializable {
     
     public List<Usuario> listarUsuarios(){
         return usufc.findAll();
+    }
+
+    @Override
+    public Usuario getObject(Integer i) {
+        return usufc.find(i);
     }
     
     

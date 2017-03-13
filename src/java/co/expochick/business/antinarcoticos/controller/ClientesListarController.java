@@ -70,6 +70,10 @@ public class ClientesListarController implements Serializable {
         }
     }
     
+    public List<Cliente> listarCliente(){
+        return fac.findAll();
+    }
+    
     
       //******************************************************************************************
 

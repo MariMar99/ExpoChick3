@@ -22,13 +22,13 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class ClienteRegistrarManagedBean {
 
-    private Cliente cliente;
     private Usuario usuario;
+    private Cliente cliente;
     
     @EJB
-    private ClienteFacade clifc;
-    @EJB
     private UsuarioFacade usufc;
+    @EJB
+    private ClienteFacade clifc;
             
     public ClienteRegistrarManagedBean() {
     }
@@ -59,8 +59,9 @@ public class ClienteRegistrarManagedBean {
         try {
             usufc.create(usuario);
             
-            cliente.setIdClienteUsuario(Integer.MIN_VALUE);
+            //cliente.setIdClienteUsuario(Integer.MIN_VALUE);
             clifc.create(cliente);
+            
             
         } catch (Exception e) {
         }

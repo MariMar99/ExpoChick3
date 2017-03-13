@@ -57,8 +57,9 @@ public class UsuarioRegistrarManagedBean {
         return cadenaAleatoria;
     }
     
-    public void registrarUsuario(){
+    public String registrarUsuarios(){
         try {
+            System.out.println("azsxdcfvgbhjkjhgfdsxdfghjk");
             
 //            String cadena = claveAleatoria(6); //Llama el metodo que genera la contraseña
 //            usuario.setClave(cadena);
@@ -71,6 +72,7 @@ public class UsuarioRegistrarManagedBean {
         } catch (Exception e) {
             System.out.println("ERROR - REGISTRAR USUARIO ! "+e);
         }
+        return "index";
     }
     
     

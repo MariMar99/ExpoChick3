@@ -7,6 +7,8 @@ package co.expochick.business.usuarios.controller;
 
 import co.expochick.backend.persistence.entity.Rol;
 import co.expochick.backend.persistence.entity.facade.RolFacade;
+import co.expochick.frontend.converter.util.Managedbean;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,7 +21,7 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "rolListarManagedBean")
 @RequestScoped
-public class RolListarManagedBean {
+public class RolListarManagedBean implements Serializable, Managedbean<Rol> {
 
     private Rol rol;
     
@@ -44,6 +46,11 @@ public class RolListarManagedBean {
     
     public List<Rol> listarRol(){
         return rolfc.findAll();
+    }
+
+    @Override
+    public Rol getObject(Integer i) {
+        return rolfc.find(i);
     }
     
     
