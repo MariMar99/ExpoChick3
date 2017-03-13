@@ -72,6 +72,9 @@ public class PresentacionListarController implements Serializable {
         }
     }
     
+    public List<Presentacion> listarPresentacion() {
+            return pfca.findAll();
+    }
     
       //******************************************************************************************
 

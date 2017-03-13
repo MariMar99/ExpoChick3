@@ -7,6 +7,7 @@ package co.expochick.business.pedidos.controller;
 
 import co.expochick.backend.persistence.entity.Estadoproducto;
 import co.expochick.backend.persistence.entity.facade.EstadoproductoFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -20,9 +21,10 @@ import javax.ejb.EJB;
  */
 @Named(value = "estadoProductoController")
 @SessionScoped
-public class EstadoProductoController implements Serializable {
+public class EstadoProductoController implements Serializable, Managedbean<Estadoproducto> {
 
     private Estadoproducto producto;
+    
     @EJB
     private EstadoproductoFacade productofacade;
 
@@ -56,12 +58,22 @@ public class EstadoProductoController implements Serializable {
         return this.productofacade.findAll();
 
     }
+     
+    public List<Estadoproducto> listarEstadoProducto() {
+        return productofacade.findAll();
+
+    }
 
   
     
     
       //******************************************************************************************
     public EstadoProductoController() {
+    }
+
+    @Override
+    public Estadoproducto getObject(Integer i) {
+        return productofacade.find(i);
     }
     
 }

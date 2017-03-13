@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Estadoproducto.findAll", query = "SELECT e FROM Estadoproducto e")
     , @NamedQuery(name = "Estadoproducto.findByIdEstadoProducto", query = "SELECT e FROM Estadoproducto e WHERE e.idEstadoProducto = :idEstadoProducto")
     , @NamedQuery(name = "Estadoproducto.findByNombreEstadoProducto", query = "SELECT e FROM Estadoproducto e WHERE e.nombreEstadoProducto = :nombreEstadoProducto")})
-public class Estadoproducto implements Serializable {
+public class Estadoproducto implements Serializable, IEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,6 +110,11 @@ public class Estadoproducto implements Serializable {
     @Override
     public String toString() {
         return "co.expochick.backend.persistence.entity.Estadoproducto[ idEstadoProducto=" + idEstadoProducto + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idEstadoProducto.toString();
     }
     
 }

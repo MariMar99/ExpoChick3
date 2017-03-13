@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            <ui:define name="content">
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="NombreProducto:" for="nombreProducto" />
+                            <h:inputText id="nombreProducto" value="#{productoRegistrarManagedBean.producto.nombreProducto}" title="NombreProducto" required="true" requiredMessage="The NombreProducto field is required."/>
+                            <h:outputLabel value="Descripcion:" for="descripcion" />
+                            <h:inputText id="descripcion" value="#{productoRegistrarManagedBean.producto.descripcion}" title="Descripcion" />
+                            <h:outputLabel value="Categoria:" for="categoria" />
+                            <h:inputText id="categoria" value="#{productoRegistrarManagedBean.producto.categoria}" title="Categoria" required="true" requiredMessage="The Categoria field is required."/>
+                            <h:outputLabel value="Calibre:" for="calibre" />
+                            <h:inputText id="calibre" value="#{productoRegistrarManagedBean.producto.calibre}" title="Calibre" required="true" requiredMessage="The Calibre field is required."/>
+                            <h:outputLabel value="GradoMadurez:" for="gradoMadurez" />
+                            <h:inputText id="gradoMadurez" value="#{productoRegistrarManagedBean.producto.gradoMadurez}" title="GradoMadurez" required="true" requiredMessage="The GradoMadurez field is required."/>
+                            <h:outputLabel value="Foto:" for="foto" />
+                            <h:inputTextarea rows="4" cols="30" id="foto" value="#{productoRegistrarManagedBean.producto.foto}" title="Foto" />
+                            <h:outputLabel value="IdEstadoProducto:" for="idEstadoProducto" />
+                            <h:selectOneMenu id="idEstadoProducto" value="#{productoRegistrarManagedBean.producto.idEstadoProducto}" title="IdEstadoProducto" required="true" requiredMessage="The IdEstadoProducto field is required.">
+                                <f:selectItem itemValue="Seleccionar"/>
+                                <f:selectItems value="#{estadoProductoController.listarEstadoProducto()}" var="listEstado" itemLabel="#{listEstado.nombreEstadoProducto}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="IdPrecioCantidad:" for="idPrecioCantidad" />
+                            <h:selectOneMenu id="idPrecioCantidad" value="#{productoRegistrarManagedBean.producto.idPrecioCantidad}" title="IdPrecioCantidad" required="true" requiredMessage="The IdPrecioCantidad field is required.">
+                                <f:selectItem itemValue="Seleccionar"/>
+                                <f:selectItems value="#{precioCantidadListarController.listarPrecioCantidad()}" var="listPrec" itemLabel="#{listPrec.peso}X#{listPrec.costo}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="IdPresentacion:" for="idPresentacion" />
+                            <h:selectOneMenu id="idPresentacion" value="#{productoRegistrarManagedBean.producto.idPresentacion}" title="IdPresentacion" required="true" requiredMessage="The IdPresentacion field is required.">
+                                <f:selectItem itemValue="Seleccionar"/>
+                                <f:selectItems value="#{presentacionListarController.listarPresentacion()}" var="listPresen" itemLabel="#{listPresen.presentacion}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:commandButton value="Registrar" action="#{productoRegistrarManagedBean.registrarProducto()}"/>
+                    </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

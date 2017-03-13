@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            <ui:define name="content">
+                
+                    <h:form>
+                        <h1><h:outputText value="Registrar Clientes"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="NombreEmpresa:" for="nombreEmpresa" />
+                            <h:inputText id="nombreEmpresa" value="#{clienteRegistrarManagedBean.cliente.nombreEmpresa}" title="NombreEmpresa" required="true" requiredMessage="The NombreEmpresa field is required."/>
+                            <h:outputLabel value="Sigla:" for="sigla" />
+                            <h:inputText id="sigla" value="#{clienteRegistrarManagedBean.cliente.sigla}" title="Sigla" required="true" requiredMessage="The Sigla field is required."/>
+                            <h:outputLabel value="NumeroLegal:" for="numeroLegal" />
+                            <h:inputText id="numeroLegal" value="#{clienteRegistrarManagedBean.cliente.numeroLegal}" title="NumeroLegal" required="true" requiredMessage="The NumeroLegal field is required."/>
+                            <h:outputLabel value="CodPostal:" for="codPostal" />
+                            <h:inputText id="codPostal" value="#{clienteRegistrarManagedBean.cliente.codPostal}" title="CodPostal" required="true" requiredMessage="The CodPostal field is required."/>
+                            <h:outputLabel value="IdCiudad:" for="idCiudad" />
+                            <h:selectOneMenu id="idCiudad" value="#{clienteRegistrarManagedBean.cliente.idCiudad}" title="IdCiudad" required="true" requiredMessage="The IdCiudad field is required.">
+                                <f:selectItems value="#{ciudadListarController.ciudad()}" var="listCiudad" itemLabel="#{listCiudad.nombreCiudad}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="IdEstadoCliente:" for="idEstadoCliente" />
+                            <h:selectOneMenu id="idEstadoCliente" value="#{clienteRegistrarManagedBean.cliente.idEstadoCliente}" title="IdEstadoCliente" required="true" requiredMessage="The IdEstadoCliente field is required.">
+                                <f:selectItems value="#{estadoClienteController.cliente()}" var="listClient" itemLabel="#{listClient.nombreEstadoCliente}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

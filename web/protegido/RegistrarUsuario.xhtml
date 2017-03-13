@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            <ui:define name="content">
+                    <h:form>
+                        <h1><h:outputText value="Crear Usuario"/></h1>
+                        <p>Se autogenera la contraseña, por eso el campo no está....(borra esto!)</p>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="PrimerNombre:" for="primerNombre" />
+                            <h:inputText id="primerNombre" value="#{usuarioRegistrarManagedBean.usuario.primerNombre}" title="PrimerNombre" required="true" requiredMessage="The PrimerNombre field is required."/>
+                            <h:outputLabel value="Segundonombre:" for="segundonombre" />
+                            <h:inputText id="segundonombre" value="#{usuarioRegistrarManagedBean.usuario.segundonombre}" title="Segundonombre" />
+                            <h:outputLabel value="PrimerApellido:" for="primerApellido" />
+                            <h:inputText id="primerApellido" value="#{usuarioRegistrarManagedBean.usuario.primerApellido}" title="PrimerApellido" required="true" requiredMessage="The PrimerApellido field is required."/>
+                            <h:outputLabel value="SegundoApellido:" for="segundoApellido" />
+                            <h:inputText id="segundoApellido" value="#{usuarioRegistrarManagedBean.usuario.segundoApellido}" title="SegundoApellido" />
+                            <h:outputLabel value="Cedula:" for="cedula" />
+                            <h:inputText id="cedula" value="#{usuarioRegistrarManagedBean.usuario.cedula}" title="Cedula" required="true" requiredMessage="The Cedula field is required."/>
+                            <h:outputLabel value="Clave:" for="clave" />
+                            <h:inputText id="clave" value="#{usuarioRegistrarManagedBean.usuario.clave}" title="Clave" required="true" requiredMessage="The CodPostal field is required."/>
+                            <h:outputLabel value="Email:" for="email" />
+                            <h:inputText id="email" value="#{usuarioRegistrarManagedBean.usuario.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
+                            <h:outputLabel value="IdRol:" for="idRol" />
+                            <h:selectOneMenu id="idRol" value="#{usuarioRegistrarManagedBean.usuario.idRol}" title="IdRol" required="true" requiredMessage="The IdRol field is required.">
+                                <f:selectItem itemLabel="Seleccionar"/>
+                                <f:selectItems value="#{rolListarManagedBean.listarRol()}" var="listRol" itemLabel="#{listRol.nombreRol}"/>
+                            </h:selectOneMenu>
+                        <h:commandButton value="Registrar" action="#{usuarioRegistrarManagedBean.registrarUsuario()}"/>
+                        </h:panelGrid>
+                    </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -71,6 +71,9 @@ public class PrecioCantidadListarController implements Serializable {
         }
     }
     
+    public List<Preciocantidade> listarPrecioCantidad() {
+        return pfca.findAll();
+    }
     
       //******************************************************************************************
 

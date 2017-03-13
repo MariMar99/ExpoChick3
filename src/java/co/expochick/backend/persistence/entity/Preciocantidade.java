@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Preciocantidade.findByIdPrecioCantidad", query = "SELECT p FROM Preciocantidade p WHERE p.idPrecioCantidad = :idPrecioCantidad")
     , @NamedQuery(name = "Preciocantidade.findByPeso", query = "SELECT p FROM Preciocantidade p WHERE p.peso = :peso")
     , @NamedQuery(name = "Preciocantidade.findByCosto", query = "SELECT p FROM Preciocantidade p WHERE p.costo = :costo")})
-public class Preciocantidade implements Serializable {
+public class Preciocantidade implements Serializable, IEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -124,6 +124,11 @@ public class Preciocantidade implements Serializable {
     @Override
     public String toString() {
         return "co.expochick.backend.persistence.entity.Preciocantidade[ idPrecioCantidad=" + idPrecioCantidad + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idPrecioCantidad.toString();
     }
     
 }
