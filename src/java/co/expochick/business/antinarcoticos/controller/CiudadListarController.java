@@ -70,6 +70,9 @@ public class CiudadListarController implements Serializable {
         }
     }
     
+    public List<Ciudad> listarCiudades(){
+        return facadeciudad.findAll();
+    }
     
       //******************************************************************************************
 

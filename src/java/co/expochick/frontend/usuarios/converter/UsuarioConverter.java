@@ -11,7 +11,7 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author USUARIO
+ * @author Alexandra
  */
 @FacesConverter(forClass = Usuario.class)
 public class UsuarioConverter extends AbstractConverter{

@@ -10,10 +10,27 @@
         <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
 
             <ui:define name="content">
-                
                     <h:form>
                         <h1><h:outputText value="Registrar Clientes"/></h1>
                         <h:panelGrid columns="2">
+                             <h:outputLabel value="Cedula:" for="cedula" />
+                            <h:inputText id="cedula" value="#{clienteRegistrarManagedBean.usuario.cedula}" title="Cedula" required="true" requiredMessage="The Cedula field is required."/>
+                            <h:outputLabel value="PrimerNombre:" for="primerNombre" />
+                            <h:inputText id="primerNombre" value="#{clienteRegistrarManagedBean.usuario.primerNombre}" title="PrimerNombre" required="true" requiredMessage="The PrimerNombre field is required."/>
+                            <h:outputLabel value="Segundonombre:" for="segundonombre" />
+                            <h:inputText id="segundonombre" value="#{clienteRegistrarManagedBean.usuario.segundonombre}" title="Segundonombre" />
+                            <h:outputLabel value="PrimerApellido:" for="primerApellido" />
+                            <h:inputText id="primerApellido" value="#{clienteRegistrarManagedBean.usuario.primerApellido}" title="PrimerApellido" required="true" requiredMessage="The PrimerApellido field is required."/>
+                            <h:outputLabel value="SegundoApellido:" for="segundoApellido" />
+                            <h:inputText id="segundoApellido" value="#{clienteRegistrarManagedBean.usuario.segundoApellido}" title="SegundoApellido" />
+                            <h:outputLabel value="Clave:" for="clave" />
+                            <h:inputText id="clave" value="#{clienteRegistrarManagedBean.usuario.clave}" title="Clave" required="true" requiredMessage="The Clave field is required."/>
+                            <h:outputLabel value="Email:" for="email" />
+                            <h:inputText id="email" value="#{clienteRegistrarManagedBean.usuario.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
+                            <h:outputLabel value="IdRol:" for="idRol" />
+                            <h:selectOneMenu id="idRol" value="#{clienteRegistrarManagedBean.usuario.idRol}" title="IdRol" required="true" requiredMessage="The IdRol field is required.">
+                                <f:selectItems value="#{rolListarManagedBean.listarRol()}" var="listRol" itemLabel="#{listRol.nombreRol}"/>
+                            </h:selectOneMenu>
                             <h:outputLabel value="NombreEmpresa:" for="nombreEmpresa" />
                             <h:inputText id="nombreEmpresa" value="#{clienteRegistrarManagedBean.cliente.nombreEmpresa}" title="NombreEmpresa" required="true" requiredMessage="The NombreEmpresa field is required."/>
                             <h:outputLabel value="Sigla:" for="sigla" />
@@ -24,13 +41,14 @@
                             <h:inputText id="codPostal" value="#{clienteRegistrarManagedBean.cliente.codPostal}" title="CodPostal" required="true" requiredMessage="The CodPostal field is required."/>
                             <h:outputLabel value="IdCiudad:" for="idCiudad" />
                             <h:selectOneMenu id="idCiudad" value="#{clienteRegistrarManagedBean.cliente.idCiudad}" title="IdCiudad" required="true" requiredMessage="The IdCiudad field is required.">
-                                <f:selectItems value="#{ciudadListarController.ciudad()}" var="listCiudad" itemLabel="#{listCiudad.nombreCiudad}"/>
+                                <f:selectItems value="#{ciudadListarController.listarCiudades()}" var="listCiudad" itemLabel="#{listCiudad.nombreCiudad}"/>
                             </h:selectOneMenu>
                             <h:outputLabel value="IdEstadoCliente:" for="idEstadoCliente" />
                             <h:selectOneMenu id="idEstadoCliente" value="#{clienteRegistrarManagedBean.cliente.idEstadoCliente}" title="IdEstadoCliente" required="true" requiredMessage="The IdEstadoCliente field is required.">
-                                <f:selectItems value="#{estadoClienteController.cliente()}" var="listClient" itemLabel="#{listClient.nombreEstadoCliente}"/>
+                                <f:selectItems value="#{estadoClienteController.listarEstadosClientes   ()}" var="listClient" itemLabel="#{listClient.nombreEstadoCliente}"/>
                             </h:selectOneMenu>
                         </h:panelGrid>
+                        <h:commandButton value="Registrar" action="#{clienteRegistrarManagedBean.registrarCliente()}"/>
                     </h:form>
 
             </ui:define>

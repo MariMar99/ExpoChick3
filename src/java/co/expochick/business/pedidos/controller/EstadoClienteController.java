@@ -71,6 +71,9 @@ public class EstadoClienteController implements Serializable {
         }
     }
     
+    public List<Estadocliente> listarEstadosClientes(){
+        return facade.findAll();
+    }
     
       //******************************************************************************************
 

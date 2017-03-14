@@ -22,8 +22,10 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class DetallePedidoRegistrarManagedBean implements Serializable, Managedbean<Detallepedido> {
 
-    @EJB private DetallepedidoFacade dtpfc;
     private Detallepedido detPedido;
+    
+    @EJB
+    private DetallepedidoFacade dtpfc;
     
     public DetallePedidoRegistrarManagedBean() {
     }

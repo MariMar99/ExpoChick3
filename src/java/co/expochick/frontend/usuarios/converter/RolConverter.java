@@ -11,7 +11,7 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Mariana
+ * @author Alexandra
  */
 @FacesConverter(forClass = Rol.class)
 public class RolConverter extends AbstractConverter{

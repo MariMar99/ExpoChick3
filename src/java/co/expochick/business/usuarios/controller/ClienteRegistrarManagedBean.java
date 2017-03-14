@@ -59,7 +59,7 @@ public class ClienteRegistrarManagedBean {
         try {
             usufc.create(usuario);
             
-            //cliente.setIdClienteUsuario(Integer.MIN_VALUE);
+            //La Sigla es creada por el SIstema
             clifc.create(cliente);
             
             

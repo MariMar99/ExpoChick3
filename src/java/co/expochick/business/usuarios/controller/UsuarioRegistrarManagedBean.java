@@ -7,6 +7,8 @@ package co.expochick.business.usuarios.controller;
 
 import co.expochick.backend.persistence.entity.Usuario;
 import co.expochick.backend.persistence.entity.facade.UsuarioFacade;
+import co.expochick.frontend.converter.util.Managedbean;
+import java.io.Serializable;
 import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,7 +21,7 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "usuarioRegistrarManagedBean")
 @RequestScoped
-public class UsuarioRegistrarManagedBean {
+public class UsuarioRegistrarManagedBean implements Serializable, Managedbean<Usuario> {
 
     private Usuario usuario;
     
@@ -42,6 +44,7 @@ public class UsuarioRegistrarManagedBean {
         usuario = new Usuario();
     }
     
+    
     String claveAleatoria(int longitud) {
         String cadenaAleatoria = "";
         long milis = new java.util.GregorianCalendar().getTimeInMillis();
@@ -57,24 +60,19 @@ public class UsuarioRegistrarManagedBean {
         return cadenaAleatoria;
     }
     
-    public String registrarUsuarios(){
+    public void registrarUsuario(){
         try {
-            System.out.println("azsxdcfvgbhjkjhgfdsxdfghjk");
-            
-//            String cadena = claveAleatoria(6); //Llama el metodo que genera la contraseña
-//            usuario.setClave(cadena);
-            
+            String cadena = claveAleatoria(6); //Llama el metodo que genera la contraseña
+            usuario.setClave(cadena);//Se genera
             usufc.create(usuario);
-            System.out.println("REGISTRO CORRECTO DE USUARIO! ");
-            //Parte de Código para que envie el mensaje al usuario registrado
-            
-            
         } catch (Exception e) {
-            System.out.println("ERROR - REGISTRAR USUARIO ! "+e);
+            System.out.println("dfghjkj");
         }
-        return "index";
     }
-    
-    
+
+    @Override
+    public Usuario getObject(Integer i) {
+        return usufc.find(i);
+    }
     
 }

@@ -17,7 +17,7 @@ import javax.faces.convert.FacesConverter;
 public class ClienteConverter extends AbstractConverter{
 
     public ClienteConverter() {
-        this.nombreMBean = "clienteManagedBean";
+        this.nombreMBean = "clienteRegistrarManagedBean";
     }
     
 }

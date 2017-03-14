@@ -5,7 +5,9 @@
  */
 package co.expochick.business.pedidos.controller;
 
+import co.expochick.backend.persistence.entity.Detallepedido;
 import co.expochick.backend.persistence.entity.Pedido;
+import co.expochick.backend.persistence.entity.facade.DetallepedidoFacade;
 import co.expochick.backend.persistence.entity.facade.PedidoFacade;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -15,14 +17,19 @@ import javax.enterprise.context.RequestScoped;
 
 /**
  *
- * @author alexandra
+ * @author Alexandra
  */
 @Named(value = "pedidoRegistrarManagedBean")
 @RequestScoped
 public class PedidoRegistrarManagedBean implements Serializable {
 
-    @EJB private PedidoFacade pedfc;
     private Pedido pedido;
+    private Detallepedido detPedido;
+    
+    @EJB 
+    private PedidoFacade pedfc;
+    @EJB
+    private DetallepedidoFacade detPedidofc;
     
     public PedidoRegistrarManagedBean() {
     }
@@ -33,16 +40,30 @@ public class PedidoRegistrarManagedBean implements Serializable {
 
     public void setPedfc(PedidoFacade pedfc) {
         this.pedfc = pedfc;
-    }    
+    } 
+
+    public Detallepedido getDetPedido() {
+        return detPedido;
+    }
+
+    public void setDetPedido(Detallepedido detPedido) {
+        this.detPedido = detPedido;
+    }
+    
     
     @PostConstruct
     public void init(){
         pedido = new Pedido();
+        detPedido = new Detallepedido();
     }
     
     public void registrarPedido(){
         try {
             pedfc.create(pedido);
+            
+            detPedido.setIdPedido(pedido);
+            detPedidofc.create(detPedido);
+            
         } catch (Exception e) {
             System.out.println("ERROR - REGISTRAR PEDIDO ! "+e);
         }
