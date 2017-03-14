@@ -35,6 +35,7 @@ public class TEmpaqueRegistrarManagedBean {
     public void settEmpaque(Tipoempaque tEmpaque) {
         this.tEmpaque = tEmpaque;
     }
+
     
     @PostConstruct
     public void init(){

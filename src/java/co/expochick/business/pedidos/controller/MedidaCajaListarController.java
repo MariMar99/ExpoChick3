@@ -77,7 +77,9 @@ public class MedidaCajaListarController implements Serializable {
         }
     }
     
-    
+    public List<Medidacaja> listarMedidasCajas(){
+        return mf.findAll();
+    }
       //******************************************************************************************
 
 
