@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Inconterm.findByIdInconterm", query = "SELECT i FROM Inconterm i WHERE i.idInconterm = :idInconterm")
     , @NamedQuery(name = "Inconterm.findByInconterm", query = "SELECT i FROM Inconterm i WHERE i.inconterm = :inconterm")
     , @NamedQuery(name = "Inconterm.findByDescripcion", query = "SELECT i FROM Inconterm i WHERE i.descripcion = :descripcion")})
-public class Inconterm implements Serializable {
+public class Inconterm implements Serializable, IEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -125,6 +125,11 @@ public class Inconterm implements Serializable {
     @Override
     public String toString() {
         return "co.expochick.backend.persistence.entity.Inconterm[ idInconterm=" + idInconterm + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idInconterm.toString();
     }
     
 }

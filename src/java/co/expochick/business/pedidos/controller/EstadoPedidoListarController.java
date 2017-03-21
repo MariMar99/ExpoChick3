@@ -7,6 +7,7 @@ package co.expochick.business.pedidos.controller;
 
 import co.expochick.backend.persistence.entity.Estadopedido;
 import co.expochick.backend.persistence.entity.facade.EstadopedidoFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -25,11 +26,12 @@ import org.primefaces.context.RequestContext;
 @Named(value = "estadoPedidoListarController")
 @SessionScoped
 @RequestScoped
-public class EstadoPedidoListarController implements Serializable {
+public class EstadoPedidoListarController implements Serializable, Managedbean<Estadopedido> {
 
     private Estadopedido estado;
     @EJB
-    private EstadopedidoFacade ef;
+    private EstadopedidoFacade estadoPedfc;
+    //private EstadopedidoFacade ef;
     
     
       @PostConstruct
@@ -42,24 +44,27 @@ public class EstadoPedidoListarController implements Serializable {
     
     
     
-    public List<Estadopedido> getEstadoP() {
-        try {
-            return this.ef.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
-    }
+//    public List<Estadopedido> getEstadoP() {
+//        try {
+//            return this.estadoPedfc.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarEstadoP(Estadopedido es) {
         try {
-            ef.remove(es);
+            estadoPedfc.remove(es);
             manejarExito("eliminado");
         } catch (Exception e) {
             manejarError(e);
         }
     }
     
+    public List<Estadopedido> listarEstadoPedidos(){
+        return estadoPedfc.findAll();
+    }
     
       //******************************************************************************************
 
@@ -90,6 +95,11 @@ public class EstadoPedidoListarController implements Serializable {
 
     
     public EstadoPedidoListarController() {
+    }
+
+    @Override
+    public Estadopedido getObject(Integer i) {
+        return estadoPedfc.find(i);
     }
     
 }

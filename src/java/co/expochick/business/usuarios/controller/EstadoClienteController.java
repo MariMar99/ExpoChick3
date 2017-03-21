@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.expochick.business.pedidos.controller;
+package co.expochick.business.usuarios.controller;
 
 import co.expochick.backend.persistence.entity.Estadocliente;
 import co.expochick.backend.persistence.entity.facade.EstadoclienteFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -22,12 +23,13 @@ import org.primefaces.context.RequestContext;
  * @author Familia Toro
  */
 @Named(value = "estadoClienteController")
-@SessionScoped
-public class EstadoClienteController implements Serializable {
+//@SessionScoped
+@RequestScoped
+public class EstadoClienteController implements Serializable, Managedbean<Estadocliente> {
 
     private Estadocliente estadocli;
     @EJB
-    private EstadoclienteFacade facade;
+    private EstadoclienteFacade estadofc;
 
     public Estadocliente getEstadocli() {
         return estadocli;
@@ -38,11 +40,11 @@ public class EstadoClienteController implements Serializable {
     }
 
     public EstadoclienteFacade getFacade() {
-        return facade;
+        return estadofc;
     }
 
-    public void setFacade(EstadoclienteFacade facade) {
-        this.facade = facade;
+    public void setFacade(EstadoclienteFacade estadofc) {
+        this.estadofc = estadofc;
     }
     
     public void init(){
@@ -53,18 +55,18 @@ public class EstadoClienteController implements Serializable {
     
     
     
-    public List<Estadocliente> getCliente() {
-        try {
-            return this.facade.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
-    }
+//    public List<Estadocliente> getCliente() {
+//        try {
+//            return this.estadofc.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarDetalle(Estadocliente estcli) {
         try {
-            facade.remove(estcli);
+            estadofc.remove(estcli);
             manejarExito("eliminado");
         } catch (Exception e) {
             manejarError(e);
@@ -72,7 +74,7 @@ public class EstadoClienteController implements Serializable {
     }
     
     public List<Estadocliente> listarEstadosClientes(){
-        return facade.findAll();
+        return estadofc.findAll();
     }
     
       //******************************************************************************************
@@ -103,6 +105,11 @@ public class EstadoClienteController implements Serializable {
     }
     
     public EstadoClienteController() {
+    }
+
+    @Override
+    public Estadocliente getObject(Integer i) {
+        return estadofc.find(i);
     }
     
 }

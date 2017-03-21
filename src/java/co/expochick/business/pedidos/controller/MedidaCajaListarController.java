@@ -7,16 +7,18 @@ package co.expochick.business.pedidos.controller;
 
 import co.expochick.backend.persistence.entity.Medidacaja;
 import co.expochick.backend.persistence.entity.facade.MedidacajaFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
 
 
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
@@ -25,11 +27,12 @@ import org.primefaces.context.RequestContext;
  * @author Familia Toro
  */
 @Named(value = "medidaCajaListarController")
-@SessionScoped
+//@SessionScoped
 @RequestScoped
-public class MedidaCajaListarController implements Serializable {
+public class MedidaCajaListarController implements Serializable, Managedbean<Medidacaja> {
 
     private Medidacaja caja;
+    
     @EJB
     private MedidacajaFacade mf;
 
@@ -59,14 +62,17 @@ public class MedidaCajaListarController implements Serializable {
     
     
     
-    public List<Medidacaja> getPasa() {
-        try {
-            return this.mf.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
+    public List<Medidacaja> listarMedidasCajas(){
+        return mf.findAll();
     }
+//    public List<Medidacaja> getPasa() {
+//        try {
+//            return this.mf.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarDetalle(Medidacaja pa) {
         try {
@@ -77,9 +83,6 @@ public class MedidaCajaListarController implements Serializable {
         }
     }
     
-    public List<Medidacaja> listarMedidasCajas(){
-        return mf.findAll();
-    }
       //******************************************************************************************
 
 
@@ -109,6 +112,11 @@ public class MedidaCajaListarController implements Serializable {
 
 
     public MedidaCajaListarController() {
+    }
+
+    @Override
+    public Medidacaja getObject(Integer i) {
+        return mf.find(i);
     }
     
 }

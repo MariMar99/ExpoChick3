@@ -7,6 +7,7 @@ package co.expochick.business.antinarcoticos.controller;
 
 import co.expochick.backend.persistence.entity.Ciudad;
 import co.expochick.backend.persistence.entity.facade.CiudadFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ import org.primefaces.context.RequestContext;
  */
 @Named(value = "ciudadListarController")
 @SessionScoped
-public class CiudadListarController implements Serializable {
+public class CiudadListarController implements Serializable, Managedbean<Ciudad>{
 
     private Ciudad ciu;
     @EJB
@@ -52,14 +53,14 @@ public class CiudadListarController implements Serializable {
     
     
     
-    public List<Ciudad> getCiudad() {
-        try {
-            return this.facadeciudad.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
-    }
+//    public List<Ciudad> getCiudad() {
+//        try {
+//            return this.facadeciudad.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarCiudad(Ciudad dad) {
         try {
@@ -101,6 +102,11 @@ public class CiudadListarController implements Serializable {
 
     }
     public CiudadListarController() {
+    }
+
+    @Override
+    public Ciudad getObject(Integer i) {
+        return facadeciudad.find(i);
     }
     
 }

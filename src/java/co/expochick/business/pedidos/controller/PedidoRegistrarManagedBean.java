@@ -9,11 +9,13 @@ import co.expochick.backend.persistence.entity.Detallepedido;
 import co.expochick.backend.persistence.entity.Pedido;
 import co.expochick.backend.persistence.entity.facade.DetallepedidoFacade;
 import co.expochick.backend.persistence.entity.facade.PedidoFacade;
+import co.expochick.business.login.controller.LoginManagedBean;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -31,16 +33,24 @@ public class PedidoRegistrarManagedBean implements Serializable {
     @EJB
     private DetallepedidoFacade detPedidofc;
     
+    //Listas Valor determinado
+    @Inject
+    private LoginManagedBean capturaLogin;
+    @Inject 
+    private EstadoPedidoListarController estadoPedido;
+    
+    
     public PedidoRegistrarManagedBean() {
     }
 
-    public PedidoFacade getPedfc() {
-        return pedfc;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setPedfc(PedidoFacade pedfc) {
-        this.pedfc = pedfc;
-    } 
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
 
     public Detallepedido getDetPedido() {
         return detPedido;
@@ -49,6 +59,25 @@ public class PedidoRegistrarManagedBean implements Serializable {
     public void setDetPedido(Detallepedido detPedido) {
         this.detPedido = detPedido;
     }
+
+    public LoginManagedBean getCapturaLogin() {
+        return capturaLogin;
+    }
+
+    public void setCapturaLogin(LoginManagedBean capturaLogin) {
+        this.capturaLogin = capturaLogin;
+    }
+
+    public EstadoPedidoListarController getEstadoPedido() {
+        return estadoPedido;
+    }
+
+    public void setEstadoPedido(EstadoPedidoListarController estadoPedido) {
+        this.estadoPedido = estadoPedido;
+    }
+    
+    
+    
     
     
     @PostConstruct
@@ -57,11 +86,17 @@ public class PedidoRegistrarManagedBean implements Serializable {
         detPedido = new Detallepedido();
     }
     
+    
+    //Registrar pedidopor el Cliente
+    
     public void registrarPedido(){
         try {
+            //pedido.setIdCliente(getCapturaLogin().);
+            pedido.setIdEstadoPedido(getEstadoPedido().getObject(1));
             pedfc.create(pedido);
             
             detPedido.setIdPedido(pedido);
+            
             detPedidofc.create(detPedido);
             
         } catch (Exception e) {

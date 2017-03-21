@@ -9,6 +9,7 @@ package co.expochick.business.antinarcoticos.controller;
 
 import co.expochick.backend.persistence.entity.Antinarcotico;
 import co.expochick.backend.persistence.entity.facade.AntinarcoticoFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -26,12 +27,12 @@ import org.primefaces.context.RequestContext;
 @Named(value = "antinarcoticosListarController")
 @SessionScoped
 @RequestScoped
-public class antinarcoticosListarController implements Serializable {
+public class antinarcoticosListarController implements Serializable, Managedbean<Antinarcotico> {
 
      private Antinarcotico anti;
 
     @EJB
-    private AntinarcoticoFacade af;
+    private AntinarcoticoFacade antifc;
 
     public Antinarcotico getAnti() {
         return anti;
@@ -42,11 +43,11 @@ public class antinarcoticosListarController implements Serializable {
     }
 
     public AntinarcoticoFacade getAf() {
-        return af;
+        return antifc;
     }
 
-    public void setAf(AntinarcoticoFacade af) {
-        this.af = af;
+    public void setAf(AntinarcoticoFacade antifc) {
+        this.antifc = antifc;
     }
     
     public void init(){
@@ -58,22 +59,26 @@ public class antinarcoticosListarController implements Serializable {
     
     
     
-    public List<Antinarcotico> getAntinarcoticos() {
-        try {
-            return this.af.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
-    }
+//    public List<Antinarcotico> getAntinarcoticos() {
+//        try {
+//            return this.antifc.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarDetalle(Antinarcotico ant) {
         try {
-            af.remove(ant);
+            antifc.remove(ant);
             manejarExito("eliminado");
         } catch (Exception e) {
             manejarError(e);
         }
+    }
+    
+    public List<Antinarcotico> listarAntinarcoticos(){
+        return antifc.findAll();
     }
     
     
@@ -106,6 +111,11 @@ public class antinarcoticosListarController implements Serializable {
 
 
     public antinarcoticosListarController() {
+    }
+
+    @Override
+    public Antinarcotico getObject(Integer i) {
+        return antifc.find(i);
     }
     
 }

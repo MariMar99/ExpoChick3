@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/Templete/Templete.xhtml">
+
+            <ui:define name="content">
+
+                    <h:form>
+                        <h1><h:outputText value="View"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputText value="IdUsuario:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.idUsuario}" title="IdUsuario"/>
+                            <h:outputText value="Cedula:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.cedula}" title="Cedula"/>
+                            <h:outputText value="PrimerNombre:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.primerNombre}" title="PrimerNombre"/>
+                            <h:outputText value="Segundonombre:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.segundonombre}" title="Segundonombre"/>
+                            <h:outputText value="PrimerApellido:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.primerApellido}" title="PrimerApellido"/>
+                            <h:outputText value="SegundoApellido:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.segundoApellido}" title="SegundoApellido"/>
+                            <h:outputText value="Clave:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.clave}" title="Clave"/>
+                            <h:outputText value="Email:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.email}" title="Email"/>
+                            <h:outputText value="IdRol:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.idRol}" title="IdRol"/>
+                            <h:outputText value="Cliente:"/>
+                            <h:outputText value="#{usuariosRegistrarManagedBean.usuario.cliente}" title="Cliente"/>
+                        </h:panelGrid>
+                    </h:form>
+
+
+
+<!--                    <h:form>
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="NombreEmpresa:" for="nombreEmpresa" />
+                            <h:inputText id="nombreEmpresa" value="#{usuariosRegistrarManagedBean.cliente.nombreEmpresa}" title="NombreEmpresa" required="true" requiredMessage="The NombreEmpresa field is required."/>
+                            <h:outputLabel value="Sigla:" for="sigla" />
+                            <h:inputText id="sigla" value="#{usuariosRegistrarManagedBean.cliente.sigla}" title="Sigla" required="true" requiredMessage="The Sigla field is required."/>
+                            <h:outputLabel value="NumeroLegal:" for="numeroLegal" />
+                            <h:inputText id="numeroLegal" value="#{usuariosRegistrarManagedBean.cliente.numeroLegal}" title="NumeroLegal" required="true" requiredMessage="The NumeroLegal field is required."/>
+                            <h:outputLabel value="CodPostal:" for="codPostal" />
+                            <h:inputText id="codPostal" value="#{usuariosRegistrarManagedBean.cliente.codPostal}" title="CodPostal" required="true" requiredMessage="The CodPostal field is required."/>
+                            <h:outputLabel value="IdCiudad:" for="idCiudad" />
+                            <h:selectOneMenu id="idCiudad" value="#{usuariosRegistrarManagedBean.cliente.idCiudad}" title="IdCiudad" required="true" requiredMessage="The IdCiudad field is required.">
+                                <f:selectItems value="#{ciudadListarController.listarCiudades()}" var="listCiudad" itemLabel="#{listCiudad.nombreCiudad}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="IdEstadoCliente:" for="idEstadoCliente" />
+                            <h:selectOneMenu id="idEstadoCliente" value="#{usuariosRegistrarManagedBean.cliente.idEstadoCliente}" title="IdEstadoCliente" required="true" requiredMessage="The IdEstadoCliente field is required.">
+                                <f:selectItems value="#{estadoPedidoListarController.listarEstadoPedidos()}" var="listEstadoPe" itemLabel="#{listEstadoPe.nombreEstadoPedido}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                    </h:form>-->
+
+<h:commandButton value="Registrar" action="#{registrarUsuariosManagedBean.registrarCliente()}"/>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

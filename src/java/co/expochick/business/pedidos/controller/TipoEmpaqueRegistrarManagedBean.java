@@ -16,35 +16,34 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author Alexandra
  */
-@Named(value = "tEmpaqueRegistrarManagedBean")
+@Named(value = "tipoEmpaqueRegistrarManagedBean")
 @RequestScoped
-public class TEmpaqueRegistrarManagedBean {
+public class TipoEmpaqueRegistrarManagedBean {
 
-    private Tipoempaque tEmpaque;
+    private Tipoempaque empaque;
     
     @EJB
-    private TipoempaqueFacade tEmpfc;
+    private TipoempaqueFacade empaquefc;
     
-    public TEmpaqueRegistrarManagedBean() {
+    public TipoEmpaqueRegistrarManagedBean() {
     }
 
-    public Tipoempaque gettEmpaque() {
-        return tEmpaque;
+    public Tipoempaque getEmpaque() {
+        return empaque;
     }
 
-    public void settEmpaque(Tipoempaque tEmpaque) {
-        this.tEmpaque = tEmpaque;
+    public void setEmpaque(Tipoempaque empaque) {
+        this.empaque = empaque;
     }
-
     
     @PostConstruct
     public void init(){
-        tEmpaque = new Tipoempaque();
+        empaque = new Tipoempaque();
     }
     
-    public void registrarTipoEmpaque(){
+    public void registrarEmpaque(){
         try {
-            tEmpfc.create(tEmpaque);
+            empaquefc.create(empaque);
         } catch (Exception e) {
             System.out.println("ERROR - REGISTRAR TIPO DE EMPAQUE ! "+e);
         }

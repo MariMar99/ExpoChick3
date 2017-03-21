@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findBySegundoApellido", query = "SELECT u FROM Usuario u WHERE u.segundoApellido = :segundoApellido")
     , @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")
     , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")})
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, IEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -218,6 +218,11 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "co.expochick.backend.persistence.entity.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idUsuario.toString();
     }
     
 }

@@ -18,6 +18,7 @@ public class UsuarioConverter extends AbstractConverter{
 
     public UsuarioConverter() {
         this.nombreMBean = "usuarioRegistrarManagedBean";
+        this.nombreMBean = "usuarioListarManagedBean";
     }
     
 }

@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Antinarcotico.findByNumerosPrecintos", query = "SELECT a FROM Antinarcotico a WHERE a.numerosPrecintos = :numerosPrecintos")
     , @NamedQuery(name = "Antinarcotico.findByAgenciaAduanas", query = "SELECT a FROM Antinarcotico a WHERE a.agenciaAduanas = :agenciaAduanas")
     , @NamedQuery(name = "Antinarcotico.findByAlcanceVuce", query = "SELECT a FROM Antinarcotico a WHERE a.alcanceVuce = :alcanceVuce")})
-public class Antinarcotico implements Serializable {
+public class Antinarcotico implements Serializable, IEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -179,6 +179,11 @@ public class Antinarcotico implements Serializable {
     @Override
     public String toString() {
         return "co.expochick.backend.persistence.entity.Antinarcotico[ idAntinarcoticos=" + idAntinarcoticos + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idAntinarcoticos.toString();
     }
     
 }

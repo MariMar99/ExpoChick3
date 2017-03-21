@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Continente.findAll", query = "SELECT c FROM Continente c")
     , @NamedQuery(name = "Continente.findByIdContinente", query = "SELECT c FROM Continente c WHERE c.idContinente = :idContinente")
     , @NamedQuery(name = "Continente.findByNombreContinente", query = "SELECT c FROM Continente c WHERE c.nombreContinente = :nombreContinente")})
-public class Continente implements Serializable {
+public class Continente implements Serializable, IEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,6 +110,11 @@ public class Continente implements Serializable {
     @Override
     public String toString() {
         return "co.expochick.backend.persistence.entity.Continente[ idContinente=" + idContinente + " ]";
+    }
+
+    @Override
+    public String getId() {
+        return idContinente.toString();
     }
     
 }

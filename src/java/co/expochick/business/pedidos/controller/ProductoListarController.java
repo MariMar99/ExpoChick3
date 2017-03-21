@@ -7,13 +7,14 @@ package co.expochick.business.pedidos.controller;
 
 import co.expochick.backend.persistence.entity.Producto;
 import co.expochick.backend.persistence.entity.facade.ProductoFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
@@ -22,9 +23,9 @@ import org.primefaces.context.RequestContext;
  * @author Familia Toro
  */
 @Named(value = "productoListarController")
-@SessionScoped
+//@SessionScoped
 @RequestScoped
-public class ProductoListarController implements Serializable {
+public class ProductoListarController implements Serializable, Managedbean<Producto> {
 
     private Producto producto;
     @EJB
@@ -54,14 +55,14 @@ public class ProductoListarController implements Serializable {
     
     
     
-    public List<Producto> getProduct() {
-        try {
-            return this.pfacade.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
-    }
+//    public List<Producto> getProduct() {
+//        try {
+//            return this.pfacade.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarDetalle(Producto prod) {
         try {
@@ -70,6 +71,10 @@ public class ProductoListarController implements Serializable {
         } catch (Exception e) {
             manejarError(e);
         }
+    }
+    
+    public List<Producto> listarProductos(){
+        return pfacade.findAll();
     }
     
     
@@ -100,6 +105,11 @@ public class ProductoListarController implements Serializable {
 
     }
     public ProductoListarController() {
+    }
+
+    @Override
+    public Producto getObject(Integer i) {
+        return pfacade.find(i);
     }
     
 }

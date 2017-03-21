@@ -13,32 +13,41 @@
                 <h1><h:outputText value="Rrgistrar Pedido"/></h1>
                 <h:form>
                     <h:panelGrid columns="2">
+                        
+                        <h:outputLabel value="FechaPedido:" for="fechaPedido" />
+                        <h:inputText id="fechaPedido" value="#{pedidoRegistrarManagedBean.pedido.fechaPedido}" title="FechaPedido" required="true" requiredMessage="The FechaPedido field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="IdProducto:" for="idProducto" />
+                        <h:selectOneMenu id="idProducto" value="#{pedidoRegistrarManagedBean.detPedido.idProducto}" title="IdProducto" required="true" requiredMessage="The IdProducto field is required.">
+                            <f:selectItem itemValue="Seleccionar"/>
+                            <f:selectItems value="#{productoListarController.listarProductos()}" var="listPro" itemLabel="#{listPro.nombreProducto}"/>
+                        </h:selectOneMenu>
                         <h:outputLabel value="Cantidad:" for="cantidad" />
                         <h:inputText id="cantidad" value="#{pedidoRegistrarManagedBean.detPedido.cantidad}" title="Cantidad" required="true" requiredMessage="The Cantidad field is required."/>
+                        <h:outputLabel value="Observacion:" for="observacion" />
+                        <h:inputTextarea rows="4" cols="30" id="observacion" value="#{pedidoRegistrarManagedBean.pedido.observacion}" title="Observacion" />
+                        <h:outputLabel value="FechaEntrega:" for="fechaEntrega" />
+                        <h:inputText id="fechaEntrega" value="#{pedidoRegistrarManagedBean.pedido.fechaEntrega}" title="FechaEntrega" required="true" requiredMessage="The FechaEntrega field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
                         <h:outputLabel value="Moneda:" for="moneda" />
                         <h:inputText id="moneda" value="#{pedidoRegistrarManagedBean.detPedido.moneda}" title="Moneda" required="true" requiredMessage="The Moneda field is required."/>
                         <h:outputLabel value="IdPallet:" for="idPallet" />
                         <h:selectOneMenu id="idPallet" value="#{pedidoRegistrarManagedBean.detPedido.idPallet}" title="IdPallet" required="true" requiredMessage="The IdPallet field is required.">
+                            <f:selectItem itemValue="Seleccionar"/>
                             <f:selectItems value="#{palletListarManagedBean.listarPallest()}" var="listPall" itemLabel="#{listPall.palletStandar}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="IdPedido:" for="idPedido" />
-                        <h:selectOneMenu id="idPedido" value="#{pedidoRegistrarManagedBean.detPedido.idPedido}" title="IdPedido" required="true" requiredMessage="The IdPedido field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="IdProducto:" for="idProducto" />
-                        <h:selectOneMenu id="idProducto" value="#{pedidoRegistrarManagedBean.detPedido.idProducto}" title="IdProducto" required="true" requiredMessage="The IdProducto field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="IdTipoEmpaque:" for="idTipoEmpaque" />
                         <h:selectOneMenu id="idTipoEmpaque" value="#{pedidoRegistrarManagedBean.detPedido.idTipoEmpaque}" title="IdTipoEmpaque" required="true" requiredMessage="The IdTipoEmpaque field is required.">
-                            <!-- TODO: update below reference to list of available items-->
-                            <f:selectItems value="#{fixme}"/>
+                            <f:selectItem itemValue="Seleccionar"/>
+                            <f:selectItems value="#{listarTEmpaquesController.listarTipoEmpaques()}" var="listEmpa" itemLabel="#{listEmpa.marcaCaja}"/>
                         </h:selectOneMenu>
                     </h:panelGrid>
+                    <h:commandButton value="Registrar" action="#{pedidoRegistrarManagedBean.registrarPedido()}"/>
                 </h:form>
             </ui:define>
+                
 
         </ui:composition>
 

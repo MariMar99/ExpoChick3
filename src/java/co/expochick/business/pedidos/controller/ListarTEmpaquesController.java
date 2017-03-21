@@ -7,11 +7,13 @@ package co.expochick.business.pedidos.controller;
 
 import co.expochick.backend.persistence.entity.Tipoempaque;
 import co.expochick.backend.persistence.entity.facade.TipoempaqueFacade;
+import co.expochick.frontend.converter.util.Managedbean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -21,53 +23,58 @@ import org.primefaces.context.RequestContext;
  * @author Familia Toro
  */
 @Named(value = "listarTEmpaquesController")
-@SessionScoped
-public class ListarTEmpaquesController implements Serializable {
+//@SessionScoped
+@RequestScoped
+public class ListarTEmpaquesController implements Serializable, Managedbean<Tipoempaque> {
 
-    private Tipoempaque empque;
+    private Tipoempaque empaque;
     @EJB
-    private TipoempaqueFacade facadeempaue;
+    private TipoempaqueFacade empaquefc;
 
     public Tipoempaque getEmpque() {
-        return empque;
+        return empaque;
     }
 
-    public void setEmpque(Tipoempaque empque) {
-        this.empque = empque;
+    public void setEmpque(Tipoempaque empaque) {
+        this.empaque = empaque;
     }
 
     public TipoempaqueFacade getFacadeempaue() {
-        return facadeempaue;
+        return empaquefc;
     }
 
-    public void setFacadeempaue(TipoempaqueFacade facadeempaue) {
-        this.facadeempaue = facadeempaue;
+    public void setFacadeempaue(TipoempaqueFacade empaquefc) {
+        this.empaquefc = empaquefc;
     }
     
     public void init(){
-        empque = new Tipoempaque();
+        empaque = new Tipoempaque();
     }
     
      ///////////////////////////////////// CRUD ////////////////////////////////////////////////////////////////////////
     
     
     
-    public List<Tipoempaque> getEmpaque() {
-        try {
-            return this.facadeempaue.findAll();
-        } catch (Exception e) {
-            manejarError(e);
-        }
-        return null;
-    }
+//    public List<Tipoempaque> getEmpaque() {
+//        try {
+//            return this.empaquefc.findAll();
+//        } catch (Exception e) {
+//            manejarError(e);
+//        }
+//        return null;
+//    }
 
     public void eliminarCiudad(Tipoempaque emp) {
         try {
-            facadeempaue.remove(emp);
+            empaquefc.remove(emp);
             manejarExito("eliminado");
         } catch (Exception e) {
             manejarError(e);
         }
+    }
+    
+    public List<Tipoempaque> listarTipoEmpaques(){
+        return empaquefc.findAll();
     }
     
     
@@ -99,6 +106,11 @@ public class ListarTEmpaquesController implements Serializable {
     }
     
     public ListarTEmpaquesController() {
+    }
+
+    @Override
+    public Tipoempaque getObject(Integer i) {
+        return empaquefc.find(i);
     }
     
 }

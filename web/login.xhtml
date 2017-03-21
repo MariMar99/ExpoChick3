@@ -30,16 +30,16 @@
 
                 <div class="row loginbox">                    
                     <div class="col-lg-12">
-                        <span class="singtext" >Iniciar Sesion </span>   
+                        <span class="singtext" >Iniciar Sesión </span>   
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" type="text"  placeholder="Documento" jsf:value="#{usuarioManagedBean.usuario.cedula}" jsf:required="true" jsf:requiredMessage="Campo documento Obligatorio" /> 
+                        <input class="form-control" type="text"  placeholder="Documento" jsf:value="#{loginManagedBean.usuario.cedula}" jsf:required="true" jsf:requiredMessage="Campo documento Obligatorio" /> 
                     </div>
                     <div class="col-lg-12  col-md-12 col-sm-12">
-                        <input class="form-control" type="password" placeholder="Clave" jsf:value="#{usuarioManagedBean.usuario.clave}" jsf:required="true" jsf:requiredMessage="Campo Contraseña Obligatorio" />
+                        <input class="form-control" type="password" placeholder="Clave" jsf:value="#{loginManagedBean.usuario.clave}" jsf:required="true" jsf:requiredMessage="Campo Contraseña Obligatorio" />
                     </div>
                     <div class="col-lg-12  col-md-12 col-sm-12">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" jsf:action="#{usuarioManagedBean.loginControl()}">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" jsf:action="#{loginManagedBean.iniciarSesion()}">
                                 Iniciar Sesion</button>
                     </div>                     
 

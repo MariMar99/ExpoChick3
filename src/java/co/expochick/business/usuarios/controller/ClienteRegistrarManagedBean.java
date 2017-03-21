@@ -9,6 +9,8 @@ import co.expochick.backend.persistence.entity.Cliente;
 import co.expochick.backend.persistence.entity.Usuario;
 import co.expochick.backend.persistence.entity.facade.ClienteFacade;
 import co.expochick.backend.persistence.entity.facade.UsuarioFacade;
+import co.expochick.frontend.converter.util.Managedbean;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -20,7 +22,7 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "clienteRegistrarManagedBean")
 @RequestScoped
-public class ClienteRegistrarManagedBean {
+public class ClienteRegistrarManagedBean implements Serializable, Managedbean<Cliente>{
 
     private Usuario usuario;
     private Cliente cliente;
@@ -65,6 +67,11 @@ public class ClienteRegistrarManagedBean {
             
         } catch (Exception e) {
         }
+    }
+
+    @Override
+    public Cliente getObject(Integer i) {
+        return clifc.find(i);
     }
     
     
